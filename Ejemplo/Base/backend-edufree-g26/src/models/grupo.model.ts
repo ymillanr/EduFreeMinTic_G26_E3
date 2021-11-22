@@ -1,6 +1,5 @@
 import {Entity, model, property, belongsTo, hasMany} from '@loopback/repository';
 import {ProgramaAcademico} from './programa-academico.model';
-import {Estudiante} from './estudiante.model';
 import {Asignatura} from './asignatura.model';
 
 @model()
@@ -48,11 +47,14 @@ export class Grupo extends Entity {
   })
   finDocencia: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  semestreAcademico: string;
+
   @belongsTo(() => ProgramaAcademico)
   programaAcademicoId: string;
-
-  @hasMany(() => Estudiante, {through: {model: () => Asignatura}})
-  estudiantes: Estudiante[];
 
   constructor(data?: Partial<Grupo>) {
     super(data);

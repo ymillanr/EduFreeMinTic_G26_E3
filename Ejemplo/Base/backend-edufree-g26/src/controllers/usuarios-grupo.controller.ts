@@ -5,7 +5,7 @@ import {
   repository,
   Where,
 } from '@loopback/repository';
-import {
+  import {
   del,
   get,
   getModelSchemaRef,
@@ -16,20 +16,21 @@ import {
   requestBody,
 } from '@loopback/rest';
 import {
-  ProgramaAcademico,
-  Grupo,
+Usuarios,
+UsuarioPorGrupo,
+Grupo,
 } from '../models';
-import {ProgramaAcademicoRepository} from '../repositories';
+import {UsuariosRepository} from '../repositories';
 
-export class ProgramaAcademicoGrupoController {
+export class UsuariosGrupoController {
   constructor(
-    @repository(ProgramaAcademicoRepository) protected programaAcademicoRepository: ProgramaAcademicoRepository,
+    @repository(UsuariosRepository) protected usuariosRepository: UsuariosRepository,
   ) { }
 
-  @get('/programa-academicos/{id}/grupos', {
+  @get('/usuarios/{id}/grupos', {
     responses: {
       '200': {
-        description: 'Array of ProgramaAcademico has many Grupo',
+        description: 'Array of Usuarios has many Grupo through UsuarioPorGrupo',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Grupo)},
@@ -42,38 +43,37 @@ export class ProgramaAcademicoGrupoController {
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Grupo>,
   ): Promise<Grupo[]> {
-    return this.programaAcademicoRepository.grupos(id).find(filter);
+    return this.usuariosRepository.UsuarioPorGrupo(id).find(filter);
   }
 
-  @post('/programa-academicos/{id}/grupos', {
+  @post('/usuarios/{id}/grupos', {
     responses: {
       '200': {
-        description: 'ProgramaAcademico model instance',
+        description: 'create a Grupo model instance',
         content: {'application/json': {schema: getModelSchemaRef(Grupo)}},
       },
     },
   })
   async create(
-    @param.path.string('id') id: typeof ProgramaAcademico.prototype.id,
+    @param.path.string('id') id: typeof Usuarios.prototype.id,
     @requestBody({
       content: {
         'application/json': {
           schema: getModelSchemaRef(Grupo, {
-            title: 'NewGrupoInProgramaAcademico',
+            title: 'NewGrupoInUsuarios',
             exclude: ['id'],
-            optional: ['programaAcademicoId']
           }),
         },
       },
     }) grupo: Omit<Grupo, 'id'>,
   ): Promise<Grupo> {
-    return this.programaAcademicoRepository.grupos(id).create(grupo);
+    return this.usuariosRepository.UsuarioPorGrupo(id).create(grupo);
   }
 
-  @patch('/programa-academicos/{id}/grupos', {
+  @patch('/usuarios/{id}/grupos', {
     responses: {
       '200': {
-        description: 'ProgramaAcademico.Grupo PATCH success count',
+        description: 'Usuarios.Grupo PATCH success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -90,13 +90,13 @@ export class ProgramaAcademicoGrupoController {
     grupo: Partial<Grupo>,
     @param.query.object('where', getWhereSchemaFor(Grupo)) where?: Where<Grupo>,
   ): Promise<Count> {
-    return this.programaAcademicoRepository.grupos(id).patch(grupo, where);
+    return this.usuariosRepository.UsuarioPorGrupo(id).patch(grupo, where);
   }
 
-  @del('/programa-academicos/{id}/grupos', {
+  @del('/usuarios/{id}/grupos', {
     responses: {
       '200': {
-        description: 'ProgramaAcademico.Grupo DELETE success count',
+        description: 'Usuarios.Grupo DELETE success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -105,6 +105,6 @@ export class ProgramaAcademicoGrupoController {
     @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Grupo)) where?: Where<Grupo>,
   ): Promise<Count> {
-    return this.programaAcademicoRepository.grupos(id).delete(where);
+    return this.usuariosRepository.UsuarioPorGrupo(id).delete(where);
   }
 }
