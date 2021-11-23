@@ -13,7 +13,7 @@ export class PermisosPorPerfil extends Entity {
     type: 'string',
     required: true,
   })
-  usuarioId: string;
+  usuariosId: string;
 
   @property({
     type: 'string',

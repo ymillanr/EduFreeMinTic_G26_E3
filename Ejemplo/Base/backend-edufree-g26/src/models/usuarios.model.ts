@@ -1,8 +1,5 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
-import {Grupo} from './grupo.model';
 import {UsuarioPorGrupo} from './usuario-por-grupo.model';
-import {Perfil} from './perfil.model';
-import {PermisosPorPerfil} from './permisos-por-perfil.model';
 
 @model()
 export class Usuarios extends Entity {
@@ -12,12 +9,6 @@ export class Usuarios extends Entity {
     generated: true,
   })
   id?: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  perfil: string;
 
   @property({
     type: 'string',
@@ -71,11 +62,13 @@ export class Usuarios extends Entity {
   })
   tipoDocente?: string[];
 
-  @hasMany(() => Grupo, {through: {model: () => UsuarioPorGrupo}})
-  UsuarioPorGrupo: Grupo[];
+  @property({
+    type: 'string',
+  })
+  perfilId?: string;
 
-  @hasMany(() => Perfil, {through: {model: () => PermisosPorPerfil}})
-  UsuarioPorPerfil: Perfil[];
+  @hasMany(() => UsuarioPorGrupo)
+  usuarioPorGrupos: UsuarioPorGrupo[];
 
   constructor(data?: Partial<Usuarios>) {
     super(data);

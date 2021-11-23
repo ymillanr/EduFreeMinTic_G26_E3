@@ -1,4 +1,4 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasOne} from '@loopback/repository';
 
 @model()
 export class UsuarioPorGrupo extends Entity {
@@ -19,14 +19,18 @@ export class UsuarioPorGrupo extends Entity {
     type: 'string',
     required: true,
   })
-  usuarioId: string;
+  usuariosId: string;
 
   @property({
-    type: 'numeric',
+    type: 'number',
     required: true,
   })
   calificacion: string;
 
+  @property({
+    type: 'string',
+  })
+  asignaturaId?: string;
 
   constructor(data?: Partial<UsuarioPorGrupo>) {
     super(data);

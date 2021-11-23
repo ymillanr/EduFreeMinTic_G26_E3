@@ -20,7 +20,7 @@ import {
 import {UsuarioPorGrupo} from '../models';
 import {UsuarioPorGrupoRepository} from '../repositories';
 
-export class UsuarioPorGrupoController {
+export class UsuariosPorGrupoController {
   constructor(
     @repository(UsuarioPorGrupoRepository)
     public usuarioPorGrupoRepository : UsuarioPorGrupoRepository,
