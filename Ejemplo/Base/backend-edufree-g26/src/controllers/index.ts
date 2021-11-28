@@ -7,4 +7,4 @@ export * from './asignatura.controller';
 export * from './asignatura-usuario-por-grupo.controller';
 export * from './perfil-usuarios.controller';
 export * from './usuarios-usuario-por-grupo.controller';
-export * from './grupo-usuario-por-grupo.controller';
+
