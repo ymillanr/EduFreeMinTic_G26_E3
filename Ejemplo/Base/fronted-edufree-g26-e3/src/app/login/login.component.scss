@@ -1,0 +1,32 @@
+.cls-login{
+
+        max-width: 100%;
+        min-width: 100%;
+        width: 100%;
+        position: relative;
+        
+        h1{
+            text-align: center;
+        }
+
+        .cls-container-form{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #bffff9ad;
+            width: 501px;
+            padding: 10px;
+            border-radius: 15px;
+        }
+}
+
+.cls-images-bg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+
+
+}
