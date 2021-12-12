@@ -1,4 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BackendService } from '../backend.service';
+
+interface Programa {
+
+  nombre: string;
+  modalidad: string;
+}
 
 @Component({
   selector: 'app-programas-en-oferta',
@@ -7,27 +16,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProgramasEnOfertaComponent implements OnInit {
 
-  listaProgramas = [
-    {nombre: 'Medicina Veterinaria',
-    descripcion: ''
-    },
-    {nombre: 'Química',
-    descripcion: ''
-    },
-    {nombre: 'Física',
-    descripcion: ''
-    },
-    {nombre: 'Arquitectura',
-    descripcion: ''
-    },
-    {nombre: 'Biología',
-    descripcion: ''
-    }
-  ];
+  listaProgramas: Programa[] = [];
 
-  constructor() { }
 
-  ngOnInit(): void {
+
+  constructor(private servicioBackend: BackendService) {
+
+    this.servicioBackend.getRequest('/programa-academicos').subscribe(
+      {
+        next: (data) => {
+          console.log('Bien');
+          this.listaProgramas = data;
+        },
+        error: (e) => {
+          console.log('Error');
+        },
+        complete: () => {
+          console.log('Completo');
+        }
+      });
   }
+
+
+
+  ngOnInit(): void { }
 
 }

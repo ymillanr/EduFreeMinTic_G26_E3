@@ -65,6 +65,11 @@ export class Usuarios extends Entity {
   @property({
     type: 'string',
   })
+  password?: string;
+
+  @property({
+    type: 'string',
+  })
   perfilId?: string;
 
   @hasMany(() => UsuarioPorGrupo)
