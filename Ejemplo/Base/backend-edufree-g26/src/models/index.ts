@@ -6,3 +6,4 @@ export * from './usuario-por-grupo.model';
 export * from './permisos-por-perfil.model';
 export * from './perfil.model';
 
+export * from './credenciales.model';

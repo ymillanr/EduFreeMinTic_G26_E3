@@ -10,7 +10,7 @@
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Usuario</label>
                     <input type="email" autocomplete="off" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    formControlName="codigo">
+                    formControlName="correo">
                     <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
                 <div class="mb-3">
@@ -23,8 +23,9 @@
                     <label class="form-check-label" for="exampleCheck1">Aceptar términos y condiciones</label>
                 </div>
                 <button [disabled]="!formLogin.valid" type="submit" class="btn btn-primary"
-                (click) = "mostrarInfo()"
-                >Ingresar</button>
+                (click)="autenticar()">Iniciar</button>
+                <button type="submit" class="btn btn-primary float-right"
+                >Registrarme</button>
             </form>
         </div>
     </div>

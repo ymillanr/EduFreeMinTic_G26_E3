@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'fronted-edufree-g26-e3';
+  openSideBar = true;
+
+  constructor(){
+
+  }
+
+  togleSideBar(): void {
+    this.openSideBar = !this.openSideBar;
+  }
 }

@@ -1,3 +1,5 @@
+import { authenticate } from '@loopback/authentication';
+import { service } from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -16,16 +18,27 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
-import {Usuarios} from '../models';
+import {Credenciales, Usuarios} from '../models';
 import {UsuariosRepository} from '../repositories';
+import { SeguridadService } from '../services';
 
+
+@authenticate('seguridad')
 export class UsuariosController {
   constructor(
     @repository(UsuariosRepository)
     public usuariosRepository : UsuariosRepository,
+    @service(SeguridadService)
+    public servicioSeguridad: SeguridadService,
   ) {}
 
+
+  
+
+  
+ 
   @post('/usuarios')
   @response(200, {
     description: 'Usuarios model instance',

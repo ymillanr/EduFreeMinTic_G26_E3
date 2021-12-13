@@ -51,21 +51,21 @@ export class Usuarios extends Entity {
   direccion?: string;
 
   @property({
+    type: 'string',
+  })
+  password?: string;
+
+  @property({
     type: 'array',
     itemType: 'string',
   })
-  nacionalidad?: string[];
+  paisNacimiento?: string[];
 
   @property({
     type: 'array',
     itemType: 'string',
   })
   tipoDocente?: string[];
-
-  @property({
-    type: 'string',
-  })
-  password?: string;
 
   @property({
     type: 'string',
